@@ -1,2 +1,2 @@
-# Reports
+# Report
 Reports for Customer Table
