@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <title>#(title)</title>
+  </head>
+  <body>
+
+
+  <div class="content">
+
+    <div class="container">
+      <h2 class="mb-5">Customer Table</h2>
+      <div class="table-responsive custom-table-responsive">
+
+        <table class="table custom-table">
+          <thead>
+            <tr>
+
+              <th scope="col">Customer</th>
+              <th scope="col">Name</th>
+              <th scope="col">TaxNum</th>
+              <th scope="col">Type-1</th>
+              <th scope="col">Cond-1</th>
+              <th scope="col">Type-2</th>
+              <th scope="col">Cond-2</th>
+            </tr>
+          </thead>
+          <tbody>
+            #for(customer in customers):
+            <tr scope="row">
+              <td>
+                #(customer.customer)
+              </td>
+              <td><a href="#">#(customer.name)</a></td>
+              <td>
+                #(customer.taxNum)
+              </td>
+              <td>#(customer.paymtype)</td>
+              <td>#(customer.paymcond2)</td>
+              <td>#(customer.paymtype2)</td>
+              <td>#(customer.paymcond2)</td>
+            </tr>
+            #endfor
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
