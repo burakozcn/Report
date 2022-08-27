@@ -4,14 +4,14 @@ import PostgresKit
 
 struct ReportController: RouteCollection {
   func boot(routes: RoutesBuilder) throws {
-    let report = routes.grouped("report")
+    let report = routes.grouped("reports")
     report.get(use: index)
     report.post(use: create)
     report.group(":todoID") { report in
       report.delete(use: delete)
     }
     
-    let home = routes.grouped("customer")
+    let home = report.grouped("customer")
     home.get("home", use: getCustomerPage)
     home.get("index", use: indexPage)
   }
