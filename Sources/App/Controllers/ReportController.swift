@@ -57,7 +57,7 @@ struct ReportController: RouteCollection {
   
   func getFinPage(req: Request) -> EventLoopFuture<View> {
     return (req.db as! SQLDatabase).raw("""
-  Select * from finitem
+      Select * from finitem
   """).all(decoding: FinItem.self).flatMap { fins in
       var fins = [FinItem]()
       for fin in fins {

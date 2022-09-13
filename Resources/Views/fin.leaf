@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <title>#(title)</title>
+  </head>
+  <body>
+
+
+  <div class="content">
+
+    <div class="container">
+      <h2 class="mb-5">Finance Table</h2>
+      <div class="table-responsive custom-table-responsive">
+
+        <table class="table custom-table">
+          <thead>
+            <tr>
+              <th scope="col">Acc Type</th>
+              <th scope="col">Account</th>
+              <th scope="col">Currency</th>
+              <th scope="col">D Debit</th>
+              <th scope="col">D Credit</th>
+              <th scope="col">H Debit</th>
+              <th scope="col">H Credit</th>
+              <th scope="col">R Debit</th>
+              <th scope="col">R Credit</th>
+              <th scope="col">D Matched</th>
+              <th scope="col">D Balance</th>
+              <th scope="col">H Matched</th>
+              <th scope="col">H Balance</th>
+              <th scope="col">Post Date</th>
+              <th scope="col">Fin Doctype</th>
+              <th scope="col">Fin Docnum</th>
+              <th scope="col">Fin Docitem</th>
+              <th scope="col">Postway</th>
+              <th scope="col">H Currency</th>
+              <th scope="col">Acc Name</th>
+              <th scope="col">GL Acc</th>
+              <th scope="col">Doc Date</th>
+              <th scope="col">Customer</th>
+              <th scope="col">VenCus Name</th>
+              <th scope="col">Paym Type</th>
+              <th scope="col">Paym Cond</th>
+              <th scope="col">Sal Inv Type</th>
+              <th scope="col">Sal Inv Num</th>
+              <th scope="col">Del Type</th>
+              <th scope="col">Del Num</th>
+              <th scope="col">Ext Inv Type</th>
+              <th scope="col">Ext Inv Num</th>
+            </tr>
+          </thead>
+          <tbody>
+            #for(fin in fins):
+            <tr scope="row">
+              <td>#(fin.acctype)</td>
+              <td>#(fin.account)</td>
+              <td>#(fin.currency)</td>
+              <td>#(fin.ddebit)</td>
+              <td>#(fin.dcredit)</td>
+              <td>#(fin.hdebit)</td>
+              <td>#(fin.hcredit)</td>
+              <td>#(fin.rdebit)</td>
+              <td>#(fin.rcredit)</td>
+              <td>#(fin.dmatched)</td>
+              <td>#(fin.dbalance)</td>
+              <td>#(fin.hmatched)</td>
+              <td>#(fin.hbalance)</td>
+              <td>#(fin.postdate)</td>
+              <td>#(fin.findoctype)</td>
+              <td>#(fin.findocnum)</td>
+              <td>#(fin.findocitem)</td>
+              <td>#(fin.postway)</td>
+              <td>#(fin.hcurrency)</td>
+              <td>#(fin.accname)</td>
+              <td>#(fin.glaccount)</td>
+              <td>#(fin.docdate)</td>
+              <td>#(fin.customer)</td>
+              <td>#(fin.vencusname)</td>
+              <td>#(fin.paymtype)</td>
+              <td>#(fin.paymcond)</td>
+              <td>#(fin.salinvtype)</td>
+              <td>#(fin.salinvnum)</td>
+              <td>#(fin.deltype)</td>
+              <td>#(fin.delnum)</td>
+              <td>#(fin.extinvtype)</td>
+              <td>#(fin.extinvnum)</td>
+            </tr>
+            #endfor
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
