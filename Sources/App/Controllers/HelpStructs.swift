@@ -11,5 +11,5 @@ struct PageData: Encodable {
 
 struct FinPageData: Encodable {
   let title: String
-  let fin: [FinItem]
+  let fins: [FinItem]
 }
