@@ -19,6 +19,7 @@ public func configure(_ app: Application) throws {
   ), as: .psql)
   
   app.migrations.add(CreateCustomerReport())
+  app.migrations.add(CreateFinItem())
   
   app.views.use(.leaf)
   try app.autoMigrate().wait()

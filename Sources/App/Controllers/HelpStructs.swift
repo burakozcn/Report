@@ -8,3 +8,8 @@ struct CustomerPageData: Encodable {
 struct PageData: Encodable {
   let title: String
 }
+
+struct FinPageData: Encodable {
+  let title: String
+  let fin: [FinItem]
+}
