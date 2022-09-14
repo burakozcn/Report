@@ -47,7 +47,7 @@ final class FinItem: Model, Content {
   var hbalance: Double
   
   @Field(key: "postdate")
-  var postdate: Date
+  var postdate: String
   
   @Field(key: "findoctype")
   var findoctype: String
@@ -71,7 +71,7 @@ final class FinItem: Model, Content {
   var glaccount: String
   
   @Field(key: "docdate")
-  var docdate: Date
+  var docdate: String
   
   @Field(key: "customer")
   var customer: String
@@ -105,7 +105,7 @@ final class FinItem: Model, Content {
   
   init() {  }
   
-  init(id: Int? = nil, acctype: String, account: String, currency: String, ddebit: Double, dcredit: Double, hdebit: Double, hcredit: Double, rdebit: Double, rcredit: Double, dmatched: Double, dbalance: Double, hmatched: Double, hbalance: Double, postdate: Date, findoctype: String, findocnum: String, findocitem: Int, postway: Int, hcurrency: String, accname: String, glaccount: String, docdate: Date, customer: String, vencusname: String, paymtype: String, paymcond: String, salinvtype: String, salinvnum: String, deltype: String, delnum: String, extinvtype: String, extinvnum: String) {
+  init(id: Int? = nil, acctype: String, account: String, currency: String, ddebit: Double, dcredit: Double, hdebit: Double, hcredit: Double, rdebit: Double, rcredit: Double, dmatched: Double, dbalance: Double, hmatched: Double, hbalance: Double, postdate: String, findoctype: String, findocnum: String, findocitem: Int, postway: Int, hcurrency: String, accname: String, glaccount: String, docdate: String, customer: String, vencusname: String, paymtype: String, paymcond: String, salinvtype: String, salinvnum: String, deltype: String, delnum: String, extinvtype: String, extinvnum: String) {
     self.id = id
     self.acctype = acctype
     self.account = account
