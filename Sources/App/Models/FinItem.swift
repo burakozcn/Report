@@ -17,34 +17,34 @@ final class FinItem: Model, Content {
   var currency: String
   
   @Field(key: "ddebit")
-  var ddebit: Float
+  var ddebit: Double
   
   @Field(key: "dcredit")
-  var dcredit: Float
+  var dcredit: Double
   
   @Field(key: "hdebit")
-  var hdebit: Float
+  var hdebit: Double
   
   @Field(key: "hcredit")
-  var hcredit: Float
+  var hcredit: Double
   
   @Field(key: "rdebit")
-  var rdebit: Float
+  var rdebit: Double
   
   @Field(key: "rcredit")
-  var rcredit: Float
+  var rcredit: Double
   
   @Field(key: "dmatched")
-  var dmatched: Float
+  var dmatched: Double
   
   @Field(key: "dbalance")
-  var dbalance: Float
+  var dbalance: Double
   
   @Field(key: "hmatched")
-  var hmatched: Float
+  var hmatched: Double
   
   @Field(key: "hbalance")
-  var hbalance: Float
+  var hbalance: Double
   
   @Field(key: "postdate")
   var postdate: Date
@@ -105,7 +105,7 @@ final class FinItem: Model, Content {
   
   init() {  }
   
-  init(id: Int? = nil, acctype: String, account: String, currency: String, ddebit: Float, dcredit: Float, hdebit: Float, hcredit: Float, rdebit: Float, rcredit: Float, dmatched: Float, dbalance: Float, hmatched: Float, hbalance: Float, postdate: Date, findoctype: String, findocnum: String, findocitem: Int, postway: Int, hcurrency: String, accname: String, glaccount: String, docdate: Date, customer: String, vencusname: String, paymtype: String, paymcond: String, salinvtype: String, salinvnum: String, deltype: String, delnum: String, extinvtype: String, extinvnum: String) {
+  init(id: Int? = nil, acctype: String, account: String, currency: String, ddebit: Double, dcredit: Double, hdebit: Double, hcredit: Double, rdebit: Double, rcredit: Double, dmatched: Double, dbalance: Double, hmatched: Double, hbalance: Double, postdate: Date, findoctype: String, findocnum: String, findocitem: Int, postway: Int, hcurrency: String, accname: String, glaccount: String, docdate: Date, customer: String, vencusname: String, paymtype: String, paymcond: String, salinvtype: String, salinvnum: String, deltype: String, delnum: String, extinvtype: String, extinvnum: String) {
     self.id = id
     self.acctype = acctype
     self.account = account
