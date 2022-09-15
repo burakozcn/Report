@@ -74,6 +74,7 @@ struct ReportController: RouteCollection {
   func getFinFullPage(req: Request) -> EventLoopFuture<View> {
     return (req.db as! SQLDatabase).raw("""
       Select * from finfullitem
+      LIMIT 5000
   """).all(decoding: FinItem.self).flatMap { finances in
       var fins = [FinItem]()
       for fin in finances {
