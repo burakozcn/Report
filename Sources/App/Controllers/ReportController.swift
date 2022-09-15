@@ -17,6 +17,9 @@ struct ReportController: RouteCollection {
     
     let fin = report.grouped("fin")
     fin.get("home", use: getFinPage)
+    
+    let finfull = report.grouped("finfull")
+    finfull.get("home", use: getFinFullPage)
   }
   
   func index(req: Request) async throws -> [Customer] {
@@ -64,7 +67,20 @@ struct ReportController: RouteCollection {
         fins.append(FinItem(acctype: fin.acctype, account: fin.account, currency: fin.currency, ddebit: fin.ddebit, dcredit: fin.dcredit, hdebit: fin.hdebit, hcredit: fin.hcredit, rdebit: fin.rdebit, rcredit: fin.rcredit, dmatched: fin.dmatched, dbalance: fin.dbalance, hmatched: fin.hmatched, hbalance: fin.hbalance, postdate: fin.postdate, findoctype: fin.findoctype, findocnum: fin.findocnum, findocitem: fin.findocitem, postway: fin.postway, hcurrency: fin.hcurrency, accname: fin.accname, glaccount: fin.glaccount, docdate: fin.docdate, customer: fin.customer, vencusname: fin.vencusname, paymtype: fin.paymtype, paymcond: fin.paymcond, salinvtype: fin.salinvtype, salinvnum: fin.salinvnum, deltype: fin.deltype, delnum: fin.delnum, extinvtype: fin.extinvtype, extinvnum: fin.extinvnum))
       }
       let context = FinPageData(title: "Finance Items", fins: fins)
-      return req.view.render("fin", context)
+      return req.view.render("finfull", context)
+    }
+  }
+  
+  func getFinFullPage(req: Request) -> EventLoopFuture<View> {
+    return (req.db as! SQLDatabase).raw("""
+      Select * from finfullitem
+  """).all(decoding: FinItem.self).flatMap { finances in
+      var fins = [FinItem]()
+      for fin in finances {
+        fins.append(FinItem(acctype: fin.acctype, account: fin.account, currency: fin.currency, ddebit: fin.ddebit, dcredit: fin.dcredit, hdebit: fin.hdebit, hcredit: fin.hcredit, rdebit: fin.rdebit, rcredit: fin.rcredit, dmatched: fin.dmatched, dbalance: fin.dbalance, hmatched: fin.hmatched, hbalance: fin.hbalance, postdate: fin.postdate, findoctype: fin.findoctype, findocnum: fin.findocnum, findocitem: fin.findocitem, postway: fin.postway, hcurrency: fin.hcurrency, accname: fin.accname, glaccount: fin.glaccount, docdate: fin.docdate, customer: fin.customer, vencusname: fin.vencusname, paymtype: fin.paymtype, paymcond: fin.paymcond, salinvtype: fin.salinvtype, salinvnum: fin.salinvnum, deltype: fin.deltype, delnum: fin.delnum, extinvtype: fin.extinvtype, extinvnum: fin.extinvnum))
+      }
+      let context = FinPageData(title: "Finance Items Full", fins: fins)
+      return req.view.render("finfull", context)
     }
   }
 }
