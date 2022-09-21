@@ -48,6 +48,7 @@ struct ReportController: RouteCollection {
   func getCustomerPage(req: Request) -> EventLoopFuture<View> {
     return (req.db as! SQLDatabase).raw("""
       Select * from customer
+      order by customer
   """).all(decoding: Customer.self).flatMap { custos in
       var custs = [Customer]()
       for custo in custos {
