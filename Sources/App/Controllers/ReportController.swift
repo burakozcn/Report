@@ -51,7 +51,7 @@ struct ReportController: RouteCollection {
   """).all(decoding: Customer.self).flatMap { custos in
       var custs = [Customer]()
       for custo in custos {
-        custs.append(Customer(customer: custo.customer, name: custo.name, taxNum: custo.taxNum, paymtype: custo.paymtype, paymcond: custo.paymcond, paymtype2: custo.paymtype2, paymcond2: custo.paymcond2))
+        custs.append(Customer(customer: custo.customer, name: custo.name, custcond: custo.custcond, city: custo.city, country: custo.country, sortby: custo.sortby, taxdept: custo.taxdept, taxNum: custo.taxNum, iseinvomember: custo.iseinvomember, isedelmember: custo.isedelmember, paymtype: custo.paymtype, paymcond: custo.paymcond, paymtype2: custo.paymtype2, paymcond2: custo.paymcond2))
       }
       let context = CustomerPageData(title: "Customers", customers: custs)
       return req.view.render("home", context)

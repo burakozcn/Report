@@ -31,9 +31,16 @@
           <thead>
             <tr>
 
-              <th scope="col">Customer</th>
-              <th scope="col">Name</th>
-              <th scope="col">TaxNum</th>
+              <th scope="col">Müşteri</th>
+              <th scope="col">Adı</th>
+              <th scope="col">Koşul Grb</th>
+              <th scope="col">Şehir</th>
+              <th scope="col">Ülke</th>
+              <th scope="col">Kriter</th>
+              <th scope="col">Vergi D</th>
+              <th scope="col">Vergi N</th>
+              <th scope="col">E-Fat</th>
+              <th scope="col">E-İrs</th>
               <th scope="col">Type-1</th>
               <th scope="col">Cond-1</th>
               <th scope="col">Type-2</th>
@@ -43,13 +50,16 @@
           <tbody>
             #for(customer in customers):
             <tr scope="row">
-              <td>
-                #(customer.customer)
-              </td>
-              <td><a href="#">#(customer.name)</a></td>
-              <td>
-                #(customer.taxNum)
-              </td>
+              <td>#(customer.customer)</td>
+              <td>#(customer.name)</td>
+              <td>#(customer.custcond)</td>
+              <td>#(customer.city)</td>
+              <td>#(customer.country)</td>
+              <td>#(customer.sortby)</td>
+              <td>#(customer.taxdept)</td>
+              <td>#(customer.taxNum)</td>
+              <td>#(customer.iseinvomember)</td>
+              <td>#(customer.isedelmember)</td>
               <td>#(customer.paymtype)</td>
               <td>#(customer.paymcond2)</td>
               <td>#(customer.paymtype2)</td>
