@@ -87,7 +87,7 @@ final class FinItem2: Model, Content {
   
   init() {  }
   
-  init(id: Int? = nil, findoctype: String, findocnum: String, docdate: String, acctype: String, glaccount: String, gltext: String, account: String, atext: String, postway: Int, hpostamnt: Double, dpostamnt: Double, dbalance: Double, hbalance: Double, debitd: Double, creditd: Double, debith: Double, credith: Double, dprice: Double, hprice: Double, paymtype: String, paymcond: String, duedate: String, vencusdept: String) {
+  init(id: Int? = nil, findoctype: String, findocnum: String, docdate: String, acctype: String, glaccount: String, gltext: String, account: String, atext: String, postway: Int, hpostamnt: Double, dpostamnt: Double, dbalance: Double, hbalance: Double, debitd: Double, creditd: Double, debith: Double, credith: Double, dprice: Double, hprice: Double, currdate: Date, currency: String, hcurrency: String, paymtype: String, paymcond: String, duedate: String, vencusdept: String) {
     self.id = id
     self.findoctype = findoctype
     self.findocnum = findocnum
@@ -108,7 +108,9 @@ final class FinItem2: Model, Content {
     self.credith = credith
     self.dprice = dprice
     self.hprice = hprice
-    
+    self.currdate = currdate
+    self.currency = currency
+    self.hcurrency = hcurrency
     self.paymtype = paymtype
     self.paymcond = paymcond
     self.duedate = duedate
