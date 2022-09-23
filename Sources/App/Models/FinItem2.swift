@@ -65,7 +65,7 @@ final class FinItem2: Model, Content {
   var hprice: Double
   
   @Field(key: "currdate")
-  var currdate: Date
+  var currdate: String
   
   @Field(key: "currency")
   var currency: String
