@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <title>#(title)</title>
+  </head>
+  <body>
+
+
+  <div class="content">
+
+    <div class="container">
+      <h2 class="mb-5">Finance Table</h2>
+      <div class="table-responsive custom-table-responsive">
+
+        <table class="table custom-table">
+          <thead>
+            <tr>
+              <th scope="col">Fin Doctype</th>
+              <th scope="col">Fin Docnum</th>
+              <th scope="col">Doc Date</th>
+              <th scope="col">Acc Type</th>
+              <th scope="col">GL Acc</th>
+              <th scope="col">GL Text</th>
+              <th scope="col">Account</th>
+              <th scope="col">A Text</th>
+              <th scope="col">Postway</th>
+              <th scope="col">H Post Amnt</th>
+              <th scope="col">D Post Amnt</th>
+              <th scope="col">D Balance</th>
+              <th scope="col">H Balance</th>
+              <th scope="col">D Debit</th>
+              <th scope="col">D Credit</th>
+              <th scope="col">H Debit</th>
+              <th scope="col">H Credit</th>
+              <th scope="col">D Price</th>
+              <th scope="col">H Price</th>
+              <th scope="col">Paym Type</th>
+              <th scope="col">Paym Cond</th>
+              <th scope="col">VenCus Dept</th>
+              <th scope="col">VenCus Dept</th>
+            </tr>
+          </thead>
+          <tbody>
+            #for(fin in fins):
+            <tr scope="row">
+              <td>#(fin.findoctype)</td>
+              <td>#(fin.findocnum)</td>
+              <td>#(fin.docdate)</td>
+              <td>#(fin.acctype)</td>
+              <td>#(fin.glaccount)</td>
+              <td>#(fin.gltext)</td>
+              <td>#(fin.account)</td>
+              <td>#(fin.atext)</td>
+              <td>#(fin.postway)</td>
+              <td>#(fin.hpostamnt)</td>
+              <td>#(fin.dpostamnt)</td>
+              <td>#(fin.hbalance)</td>
+              <td>#(fin.dbalance)</td>
+              <td>#(fin.ddebit)</td>
+              <td>#(fin.dcredit)</td>
+              <td>#(fin.hdebit)</td>
+              <td>#(fin.hcredit)</td>
+              <td>#(fin.dprice)</td>
+              <td>#(fin.hprice)</td>
+              <td>#(fin.paymtype)</td>
+              <td>#(fin.paymcond)</td>
+              <td>#(fin.duedate)</td>
+              <td>#(fin.vencusdept)</td>
+            </tr>
+            #endfor
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
+

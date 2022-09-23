@@ -13,3 +13,8 @@ struct FinPageData: Encodable {
   let title: String
   let fins: [FinItem]
 }
+
+struct Fin2PageData: Encodable {
+  let title: String
+  let fins: [FinItem2]
+}

@@ -21,6 +21,7 @@ public func configure(_ app: Application) throws {
   app.migrations.add(CreateCustomerReport())
   app.migrations.add(CreateFinItem())
   app.migrations.add(CreateFinFullItem())
+  app.migrations.add(CreateFinItem2())
   
   app.views.use(.leaf)
   try app.autoMigrate().wait()

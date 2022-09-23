@@ -18,6 +18,9 @@ struct ReportController: RouteCollection {
     let fin = report.grouped("fin")
     fin.get("home", use: getFinPage)
     
+    let fin2 = report.grouped("fin2")
+    fin2.get("home", use: getFin2Page)
+    
     let finfull = report.grouped("finfull")
     finfull.get("home", use: getFinFullPage)
   }
@@ -83,6 +86,20 @@ struct ReportController: RouteCollection {
       }
       let context = FinPageData(title: "Finance Items Full", fins: fins)
       return req.view.render("finfull", context)
+    }
+  }
+  
+  func getFin2Page(req: Request) -> EventLoopFuture<View> {
+    return (req.db as! SQLDatabase).raw("""
+      Select * from finitem2
+      order by docdate
+  """).all(decoding: FinItem2.self).flatMap { finances in
+      var fins = [FinItem2]()
+      for fin in finances {
+        fins.append(FinItem2(findoctype: fin.findoctype, findocnum: fin.findocnum, docdate: fin.docdate, acctype: fin.acctype, glaccount: fin.glaccount, gltext: fin.gltext, account: fin.account, atext: fin.atext, postway: fin.postway, hpostamnt: fin.hpostamnt, dpostamnt: fin.dpostamnt, dbalance: fin.dbalance, hbalance: fin.hbalance, debitd: fin.debitd, creditd: fin.creditd, debith: fin.debith, credith: fin.credith, dprice: fin.dprice, hprice: fin.hprice, paymtype: fin.paymtype, paymcond: fin.paymcond, duedate: fin.duedate, vencusdept: fin.vencusdept))
+      }
+      let context = Fin2PageData(title: "Finance Items", fins: fins)
+      return req.view.render("fin2", context)
     }
   }
 }
