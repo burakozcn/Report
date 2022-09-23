@@ -64,6 +64,15 @@ final class FinItem2: Model, Content {
   @Field(key: "hprice")
   var hprice: Double
   
+  @Field(key: "currdate")
+  var currdate: Date
+  
+  @Field(key: "currency")
+  var currency: String
+  
+  @Field(key: "hcurrency")
+  var hcurrency: String
+  
   @Field(key: "paymtype")
   var paymtype: String
 
@@ -99,6 +108,7 @@ final class FinItem2: Model, Content {
     self.credith = credith
     self.dprice = dprice
     self.hprice = hprice
+    
     self.paymtype = paymtype
     self.paymcond = paymcond
     self.duedate = duedate
