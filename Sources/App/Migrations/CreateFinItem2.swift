@@ -23,6 +23,7 @@ struct CreateFinItem2: AsyncMigration {
       .field("credith", .sql(raw: "numeric(21,2)"))
       .field("dprice", .sql(raw: "numeric(21,2)"))
       .field("hprice", .sql(raw: "numeric(21,2)"))
+      .field("punit", .sql(raw: "numeric(21,2)"))
       .field("currdate", .sql(raw: "date"))
       .field("currency", .sql(raw: "character varying(3)"))
       .field("hcurrency", .sql(raw: "character varying(3)"))

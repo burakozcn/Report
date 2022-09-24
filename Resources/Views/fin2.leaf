@@ -49,6 +49,7 @@
               <th scope="col">H Credit</th>
               <th scope="col">D Price</th>
               <th scope="col">H Price</th>
+              <th scope="col">P Unit</th>
               <th scope="col">Curr Date</th>
               <th scope="col">Curr</th>
               <th scope="col">H Curr</th>
@@ -80,6 +81,7 @@
               <td>#(fin.hcredit)</td>
               <td>#(fin.dprice)</td>
               <td>#(fin.hprice)</td>
+              <td>#(fin.punit)</td>
               <td>#(fin.currdate)</td>
               <td>#(fin.currency)</td>
               <td>#(fin.hcurrency)</td>
