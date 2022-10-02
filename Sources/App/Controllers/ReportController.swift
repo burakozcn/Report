@@ -23,6 +23,17 @@ struct ReportController: RouteCollection {
     
     let finfull = report.grouped("finfull")
     finfull.get("home", use: getFinFullPage)
+    
+    let tableTruncate = routes.grouped("tabletruncate")
+    tableTruncate.get("iascustomer", use: truncateIasCustomer)
+    tableTruncate.get("iasfinhead", use: truncateIasFinHead)
+    tableTruncate.get("iasfinitem", use: truncateIasFinItem)
+    tableTruncate.get("finitem2", use: truncateFinItem2)
+    tableTruncate.get("customer", use: truncateCustomer)
+    
+    let tableInsert = routes.grouped("tableinsert")
+    tableInsert.get("customer", use: insertCustomer)
+    tableInsert.get("finitem2", use: insertFinItem2)
   }
   
   func index(req: Request) async throws -> [Customer] {
@@ -100,6 +111,151 @@ struct ReportController: RouteCollection {
       }
       let context = Fin2PageData(title: "Finance Items", fins: fins)
       return req.view.render("fin2", context)
+    }
+  }
+  
+  func truncateIasCustomer(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+      Truncate iascustomer
+      """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
+  func truncateIasFinHead(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+      Truncate iasfinhead
+      """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
+  func truncateIasFinItem(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+      Truncate iasfinitem
+      """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
+  func truncateCustomer(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+      Truncate customer
+      """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
+  func truncateFinItem2(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+      Truncate finitem2
+      """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
+  func insertCustomer(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+      Insert into customer
+      Select row_number() over() as id,
+             customer,
+             name1,
+             custcond,
+             city,
+             country,
+             sortby,
+             taxdept,
+             taxnum,
+             iseinvomember,
+             isedelmember,
+             paymcond,
+             paymtype,
+             paymcond2,
+             paymtype2
+      from iascustomer
+      """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
+  func insertFinItem2(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+      Insert into finitem2
+      Select row_number() over() as id,
+             iasfinitem.findoctype,
+             iasfinitem.findocnum,
+             iasfinitem.docdate,
+             iasfinitem.acctype,
+             iasfinitem.glaccount,
+             iasfinitem.gltext,
+             iasfinitem.account,
+             iasfinitem.atext,
+             iasfinitem.postway,
+             iasfinitem.hpostamnt,
+             iasfinitem.dpostamnt,
+             iasfinitem.dbalance,
+             iasfinitem.hbalance,
+             iasfinitem.debitd,
+             iasfinitem.creditd,
+             iasfinitem.debith,
+             iasfinitem.credith,
+             iasfinitem.dprice,
+             iasfinitem.hprice,
+             iasfinitem.punit,
+             iasfinitem.currdate,
+             iasfinitem.currency,
+             iasfinitem.hcurrency,
+             iasfinitem.paymtype,
+             iasfinitem.paymcond,
+             iasfinitem.duedate,
+             iasfinitem.vencusdept
+      from iasfinhead, iasfinitem
+      where iasfinhead.findocnum = iasfinitem.findocnum and iasfinhead.findoctype = iasfinitem.findoctype
+      and iasfinitem.accstd = iasfinhead.accstd and (iasfinitem.acctype = 'T' or iasfinitem.acctype = 'M') and iasfinhead.iscancel = 0
+      """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
     }
   }
 }

@@ -14,9 +14,9 @@ struct CreateCustomerReport: AsyncMigration {
       .field("taxNum", .sql(raw: "character varying(20)"))
       .field("iseinvomember", .int)
       .field("isedelmember", .int)
-      .field("paymtype", .sql(raw: "character varying(2)"))
+      .field("paymtype", .sql(raw: "character varying(4)"))
       .field("paymcond", .sql(raw: "character varying(4)"))
-      .field("paymtype2", .sql(raw: "character varying(2)"))
+      .field("paymtype2", .sql(raw: "character varying(4)"))
       .field("paymcond2", .sql(raw: "character varying(4)"))
       .create()
   }
