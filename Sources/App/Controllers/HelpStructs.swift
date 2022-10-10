@@ -20,6 +20,11 @@ struct Fin2PageData: Encodable {
   let fins: [FinItem2]
 }
 
+struct Salt70PageData: Encodable {
+  let title: String
+  let sales: [Salt70]
+}
+
 final class Row: Model, Content {
   static let schema = "todos"
   

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <title>#(title)</title>
+  </head>
+  <body>
+
+
+  <div class="content">
+
+    <div class="container">
+      <h2 class="mb-5">Finance Table</h2>
+      <div class="table-responsive custom-table-responsive">
+
+        <table class="table custom-table">
+          <thead>
+            <tr>
+              <th scope="col">Malzeme</th>
+              <th scope="col">Malzeme Açıklaması</th>
+              <th scope="col">Müşteri No</th>
+              <th scope="col">Müşteri Adı</th>
+              <th scope="col">Tarih</th>
+              <th scope="col">Fatura Tipi</th>
+              <th scope="col">Fatura No</th>
+              <th scope="col">Sıra No</th>
+              <th scope="col">Miktar</th>
+              <th scope="col">Miktar Br</th>
+              <th scope="col">Birim Fiyat</th>
+              <th scope="col">İndirimsiz Net</th>
+              <th scope="col">İndirimli Net</th>
+              <th scope="col">Kdv</th>
+              <th scope="col">Genel Toplam</th>
+              <th scope="col">Para Birimi</th>
+              <th scope="col">Kur İndirimsiz</th>
+              <th scope="col">Kur İndirimli</th>
+              <th scope="col">Kur Vergi</th>
+              <th scope="col">Kur Toplam</th>
+            </tr>
+          </thead>
+          <tbody>
+            #for(sale in sales):
+            <tr scope="row">
+              <td>#(sale.malzeme)</td>
+              <td>#(sale.malzeme_aciklamasi)</td>
+              <td>#(sale.musteri)</td>
+              <td>#(sale.musteri_adi)</td>
+              <td>#(sale.tarih)</td>
+              <td>#(sale.fatura_tipi)</td>
+              <td>#(sale.fatura_no)</td>
+              <td>#(sale.item_no)</td>
+              <td>#(sale.miktar)</td>
+              <td>#(sale.miktar_br)</td>
+              <td>#(sale.birim_fiyat)</td>
+              <td>#(sale.indirimsiz_net)</td>
+              <td>#(sale.indirimli_net)</td>
+              <td>#(sale.kdv)</td>
+              <td>#(sale.genel_toplam)</td>
+              <td>#(sale.para_birimi)</td>
+              <td>#(sale.kur_indirimsiz)</td>
+              <td>#(sale.kur_indirimli)</td>
+              <td>#(sale.kur_vergi)</td>
+              <td>#(sale.kur_toplam)</td>
+            </tr>
+            #endfor
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
