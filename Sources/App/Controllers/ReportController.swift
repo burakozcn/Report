@@ -36,6 +36,7 @@ struct ReportController: RouteCollection {
     tableTruncate.get("iassalhead", use: truncateIasSalHead)
     tableTruncate.get("iassalitem", use: truncateIasSalItem)
     tableTruncate.get("salt70", use: truncateSalt70)
+    tableTruncate.get("iasbas012", use: truncateIasBas012)
     
     let tableInsert = routes.grouped("tableinsert")
     tableInsert.get("customer", use: insertCustomer)
@@ -128,7 +129,7 @@ struct ReportController: RouteCollection {
   """).all(decoding: Salt70.self).flatMap { sales in
       var sals = [Salt70]()
       for sale in sales {
-        sals.append(Salt70(malzeme: sale.malzeme, malzeme_aciklamasi: sale.malzeme_aciklamasi, musteri: sale.musteri, musteri_adi: sale.musteri_adi, tarih: sale.tarih, fatura_tipi: sale.fatura_tipi, fatura_no: sale.fatura_no, item_no: sale.item_no, miktar: sale.miktar, miktar_br: sale.miktar_br, birim_fiyat: sale.birim_fiyat, indirimsiz_net: sale.indirimsiz_net, indirimli_net: sale.indirimli_net, kdv: sale.kdv, genel_toplam: sale.genel_toplam, para_birimi: sale.para_birimi, kur_indirimsiz: sale.kur_indirimsiz, kur_indirimli: sale.kur_indirimli, kur_vergi: sale.kur_vergi, kur_toplam: sale.kur_toplam))
+        sals.append(Salt70(malzeme: sale.malzeme, malzeme_aciklamasi: sale.malzeme_aciklamasi, musteri: sale.musteri, musteri_adi: sale.musteri_adi, tarih: sale.tarih, fatura_tipi: sale.fatura_tipi, fatura_no: sale.fatura_no, item_no: sale.item_no, miktar: sale.miktar, miktar_br: sale.miktar_br, birim_fiyat: sale.birim_fiyat, indirimsiz_net: sale.indirimsiz_net, indirimli_net: sale.indirimli_net, kdv: sale.kdv, genel_toplam: sale.genel_toplam, para_birimi: sale.para_birimi, kur_indirimsiz: sale.kur_indirimsiz.rounded(toPlaces: 2), kur_indirimli: sale.kur_indirimli.rounded(toPlaces: 2), kur_vergi: sale.kur_vergi.rounded(toPlaces: 2), kur_toplam: sale.kur_toplam.rounded(toPlaces: 2)))
       }
       let context = Salt70PageData(title: "SALT70", sales: sals)
       return req.view.render("salt70", context)
@@ -194,6 +195,20 @@ struct ReportController: RouteCollection {
   func truncateIasSalItem(_ req: Request) -> EventLoopFuture<Response> {
     return (req.db as! SQLDatabase).raw("""
       Truncate iassalitem
+      """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
+  func truncateIasBas012(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+      Truncate iasbas012
       """).all(decoding: Row.self).map { result in
       let response = Response(status: .ok)
       do {
