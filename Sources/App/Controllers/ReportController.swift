@@ -340,7 +340,8 @@ struct ReportController: RouteCollection {
   func insertSalt70(_ req: Request) -> EventLoopFuture<Response> {
     return (req.db as! SQLDatabase).raw("""
       Insert into salt70
-      Select t1.material as Malzeme,
+      Select row_number() over() as id,
+             t1.material as Malzeme,
              t1.mtext as Malzeme_Aciklamasi,
              t2.customer as Musteri,
              t2.name1 as Musteri_Adi,
@@ -368,7 +369,7 @@ struct ReportController: RouteCollection {
       and t2.doctype like 'F%'
       and ((t3.createdby = 'IASOTODOVIZ' and t3.curdate between '2022-04-01' and '2022-05-25' and t3.currency = 'EUR' and t3.company = '01')
       or (t3.createdby = 'KUR' and t3.curdate > '2022-05-25' and t3.currency = 'EUR' and t3.company = '01')
-      or (t3.createdby = 'EVARDAR' and t3.curdate between '2022-06-01' and '2022-06-30' and t3.currency = 'EUR' and t3.company = '01'))
+      or (t3.createdby = 'EVARDAR' and t3.curdate between '2022-06-01' and '2022-06-30' and t3.currency = 'EUR' and t3.company = '01'));
       """).all(decoding: Row.self).map { result in
       let response = Response(status: .ok)
       do {
