@@ -23,6 +23,7 @@ public func configure(_ app: Application) throws {
   app.migrations.add(CreateFinFullItem())
   app.migrations.add(CreateFinItem2())
   app.migrations.add(CreateSalt70())
+  app.migrations.add(CreateExportReady())
   
   app.views.use(.leaf)
   try app.autoMigrate().wait()

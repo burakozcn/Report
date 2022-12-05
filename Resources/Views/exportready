@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <title>#(title)</title>
+  </head>
+  <body>
+
+
+  <div class="content">
+
+    <div class="container">
+      <h2 class="mb-5">Finance Table</h2>
+      <div class="table-responsive custom-table-responsive">
+
+        <table class="table custom-table">
+          <thead>
+            <tr>
+              <th scope="col">Order Type</th>
+              <th scope="col">Order Num</th>
+              <th scope="col">Acc Name</th>
+              <th scope="col">Date</th>
+              <th scope="col">Material</th>
+              <th scope="col">Mat Text</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Q Unit</th>
+              <th scope="col">Quantity2</th>
+              <th scope="col">Q Unitx</th>
+              <th scope="col">Variant</th>
+            </tr>
+          </thead>
+          <tbody>
+            #for(exp in exps):
+            <tr scope="row">
+              <td>#(exp.custordertype)</td>
+              <td>#(exp.custordernum)</td>
+              <td>#(exp.name1)</td>
+              <td>#(exp.createdat)</td>
+              <td>#(exp.material)</td>
+              <td>#(exp.mtext)</td>
+              <td>#(exp.skquantity)</td>
+              <td>#(exp.skunit)</td>
+              <td>#(exp.quantity2)</td>
+              <td>#(exp.qunitx)</td>
+              <td>#(exp.voptions)</td>
+            </tr>
+            #endfor
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

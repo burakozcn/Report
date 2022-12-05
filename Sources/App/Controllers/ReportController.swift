@@ -37,11 +37,26 @@ struct ReportController: RouteCollection {
     tableTruncate.get("iassalitem", use: truncateIasSalItem)
     tableTruncate.get("salt70", use: truncateSalt70)
     tableTruncate.get("iasbas012", use: truncateIasBas012)
+    tableTruncate.get("exportready", use: truncateExportReady)
+    tableTruncate.get("iasbas005x", use: truncateIasBas005x)
+    tableTruncate.get("iasbas039x", use: truncateIasBas039x)
+    tableTruncate.get("iasprdorder", use: truncateIasPrdOrder)
+    tableTruncate.get("iasinvitem", use: truncateIasPrdOrder)
+    tableTruncate.get("iasinvhead", use: truncateIasInvHead)
+    
+    let tableCreate = routes.grouped("tablecreate")
+    tableCreate.get("opensales", use: createOpenSales)
+    tableCreate.get("tempfinishedorders", use: createTempFinishedOrd)
+    
+    let tableDrop = routes.grouped("tabledrop")
+    tableDrop.get("aopensales", use: dropAOpenSales)
+    tableDrop.get("tempfinishedorders", use: dropTempFinishedOrders)
     
     let tableInsert = routes.grouped("tableinsert")
     tableInsert.get("customer", use: insertCustomer)
     tableInsert.get("finitem2", use: insertFinItem2)
     tableInsert.get("salt70", use: insertSalt70)
+    tableInsert.get("exportready", use: insertExportReady)
   }
   
   func index(req: Request) async throws -> [Customer] {
@@ -136,6 +151,19 @@ struct ReportController: RouteCollection {
     }
   }
   
+  func getExportReady(req: Request) -> EventLoopFuture<View> {
+    return (req.db as! SQLDatabase).raw("""
+      Select * from exportready
+  """).all(decoding: ExportReady.self).flatMap { exprs in
+      var exps = [ExportReady]()
+      for expr in exprs {
+        exps.append(ExportReady(custordertype: expr.custordertype, custordernum: expr.custordernum, name1: expr.name1, createdat: expr.createdat, material: expr.material, mtext: expr.mtext, skquantity: expr.skquantity, skunit: expr.skunit, quantity2: expr.quantity2, qunitx: expr.qunitx, voptions: expr.voptions))
+      }
+      let context = ExportReadyPageData(title: "Ready", exps: exps)
+      return req.view.render("exportready", context)
+    }
+  }
+  
   func truncateIasCustomer(_ req: Request) -> EventLoopFuture<Response> {
     return (req.db as! SQLDatabase).raw("""
       Truncate iascustomer
@@ -220,6 +248,76 @@ struct ReportController: RouteCollection {
     }
   }
   
+  func truncateIasInvHead(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+      Truncate iasinvhead
+      """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
+  func truncateIasInvItem(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+      Truncate iasinvitem
+      """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
+  func truncateIasPrdOrder(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+      Truncate iasprdorder
+      """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
+  func truncateIasBas039x(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+      Truncate iasbas039x
+      """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
+  func truncateIasBas005x(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+      Truncate iasbas005x
+      """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
   func truncateCustomer(_ req: Request) -> EventLoopFuture<Response> {
     return (req.db as! SQLDatabase).raw("""
       Truncate customer
@@ -261,6 +359,49 @@ struct ReportController: RouteCollection {
       return response
     }
   }
+  
+  func truncateExportReady(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+    Truncate exportReady
+    """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
+  func dropAOpenSales(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+    Drop aopensales
+    """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
+  func dropTempFinishedOrders(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+    Drop tempfinishedorders
+    """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+
   
   func insertCustomer(_ req: Request) -> EventLoopFuture<Response> {
     return (req.db as! SQLDatabase).raw("""
@@ -370,6 +511,77 @@ struct ReportController: RouteCollection {
       and ((t3.createdby = 'IASOTODOVIZ' and t3.curdate between '2022-04-01' and '2022-05-25' and t3.currency = 'EUR' and t3.company = '01')
       or (t3.createdby = 'KUR' and t3.curdate > '2022-05-25' and t3.currency = 'EUR' and t3.company = '01')
       or (t3.createdby = 'EVARDAR' and t3.curdate between '2022-06-01' and '2022-06-30' and t3.currency = 'EUR' and t3.company = '01'))
+      """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
+  func createOpenSales(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+      Create table aopensales as
+      Select * from iassalhead
+      where doctype = 'YDS'
+      and ordstat != 2
+      """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
+  func createTempFinishedOrd(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+      Create table tempfinishedorders as
+      Select * from iasprdorder
+      where iasprdorder.potype = '80' and ((iasprdorder.status1 = 1) or (2 = 1)) and iasprdorder.isdelete = 0
+      and iasprdorder.opendate <= '2100-01-01 00:00:00'
+      and iasprdorder.custordertype = 'YDS'
+      and iasprdorder.custordernum in (Select docnum from aopensales)
+      and exists (Select client from iasprd001 where client = '00' and company = iasprdorder.company
+                  and plant = iasprdorder.plant and potype = iasprdorder.potype and isproject <> 1 and ismaintenance <> 1
+                  and isserviceorder <> 1)
+      """).all(decoding: Row.self).map { result in
+      let response = Response(status: .ok)
+      do {
+        try response.content.encode(result, as: .json)
+      } catch {
+        print("catch match")
+      }
+      return response
+    }
+  }
+  
+  func insertExportReady(_ req: Request) -> EventLoopFuture<Response> {
+    return (req.db as! SQLDatabase).raw("""
+      Insert into exportready
+      Select iasinvitem.custordertype, iasinvitem.custordernum, iassalhead.name1, iasinvitem.createdat, iasinvitem.material,
+      iasinvitem.mtext, iasinvitem.batchnum, iasinvitem.skquantity, iasinvitem.skunit, iasinvitem.quantityx, iasinvitem.qunitx,
+      iasinvitem.voptions
+      from iasinvhead, iasinvitem
+      left outer join iasbas039x on (iasbas039x.client = iasinvitem.client and iasbas039x.company = iasinvitem.company
+                                    and iasbas039x.plant = iasinvitem.plant and iasbas039x.warehouse = iasinvitem.warehouse
+                                    and iasbas039x.langu = 'T')
+      left outer join iasbas005x on (iasbas005x.client = iasinvitem.client and iasbas005x.company = iasinvitem.company
+                                    and iasbas005x.plant = iasinvitem.plant and iasbas005x.langu = 'T')
+      left join iassalhead on (iassalhead.doctype = iasinvitem.custordertype and iassalhead.docnum = iasinvitem.custordernum)
+      where iasinvitem.company = iasinvhead.company and iasinvitem.invdoctype = iasinvitem.invdoctype
+      and iasinvitem.invdocnum = iasinvhead.invdocnum and iasinvhead.docdate <= '2100-01-01' and iasinvitem.warehouse = '700'
+      and iasinvitem.qpostway >= 0 and iasinvitem.qpostway <= 1 and iasinvitem.iscanceled = 0
+      and iasinvhead.sourcedoctype = '80' and iasinvhead.sourcedocnum in (Select prdorder from tempfinishedorders) and iasinvhead.sourcetype >= 3
+      and iasinvhead.sourcetype <= 3 and iasinvitem.custordertype = 'YDS'
+      group by iasinvitem.custordertype, iasinvitem.custordernum, iasinvitem.material, iasinvitem.mtext, iasinvitem.voptions
+      order by iasinvitem.docdate, iasinvitem.company, iasinvitem.createdat, iasinvitem.invdocnum, iasinvitem.invdoctype,
+      iasinvitem.invdocitem, iasinvitem.material, iasinvitem.plant, iasinvitem.warehouse, iasinvitem.stockplace
       """).all(decoding: Row.self).map { result in
       let response = Response(status: .ok)
       do {

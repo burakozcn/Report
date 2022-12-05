@@ -25,6 +25,11 @@ struct Salt70PageData: Encodable {
   let sales: [Salt70]
 }
 
+struct ExportReadyPageData: Encodable {
+  let title: String
+  let exps: [ExportReady]
+}
+
 final class Row: Model, Content {
   static let schema = "todos"
   
