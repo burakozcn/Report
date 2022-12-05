@@ -565,7 +565,7 @@ struct ReportController: RouteCollection {
     return (req.db as! SQLDatabase).raw("""
       Insert into exportready
       Select iasinvitem.custordertype, iasinvitem.custordernum, iassalhead.name1, iasinvitem.createdat, iasinvitem.material,
-      iasinvitem.mtext, iasinvitem.batchnum, iasinvitem.skquantity, iasinvitem.skunit, iasinvitem.quantityx, iasinvitem.qunitx,
+      iasinvitem.mtext, iasinvitem.skquantity, iasinvitem.skunit, iasinvitem.quantityx * count(iasinvitem.batchnum) as quantity2, iasinvitem.qunitx,
       iasinvitem.voptions
       from iasinvhead, iasinvitem
       left outer join iasbas039x on (iasbas039x.client = iasinvitem.client and iasbas039x.company = iasinvitem.company
@@ -579,9 +579,9 @@ struct ReportController: RouteCollection {
       and iasinvitem.qpostway >= 0 and iasinvitem.qpostway <= 1 and iasinvitem.iscanceled = 0
       and iasinvhead.sourcedoctype = '80' and iasinvhead.sourcedocnum in (Select prdorder from tempfinishedorders) and iasinvhead.sourcetype >= 3
       and iasinvhead.sourcetype <= 3 and iasinvitem.custordertype = 'YDS'
-      group by iasinvitem.custordertype, iasinvitem.custordernum, iasinvitem.material, iasinvitem.mtext, iasinvitem.voptions
-      order by iasinvitem.docdate, iasinvitem.company, iasinvitem.createdat, iasinvitem.invdocnum, iasinvitem.invdoctype,
-      iasinvitem.invdocitem, iasinvitem.material, iasinvitem.plant, iasinvitem.warehouse, iasinvitem.stockplace
+      group by iasinvitem.custordertype, iasinvitem.custordernum, iasinvitem.material, iasinvitem.mtext, iasinvitem.voptions,
+      iassalhead.name1, iasinvitem.createdat, iasinvitem.skquantity, iasinvitem.skunit, iasinvitem.quantityx, iasinvitem.quantityx, iasinvitem.qunitx
+      order by iassalhead.name1, iasinvitem.custordertype, iasinvitem.custordernum;
       """).all(decoding: Row.self).map { result in
       let response = Response(status: .ok)
       do {
