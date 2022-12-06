@@ -27,6 +27,9 @@ struct ReportController: RouteCollection {
     let salt70 = report.grouped("salt70")
     salt70.get("home", use: getSalt70)
     
+    let export = report.grouped("export")
+    export.get("home", use: getExportReady)
+    
     let tableTruncate = routes.grouped("tabletruncate")
     tableTruncate.get("iascustomer", use: truncateIasCustomer)
     tableTruncate.get("iasfinhead", use: truncateIasFinHead)
@@ -564,7 +567,7 @@ struct ReportController: RouteCollection {
   func insertExportReady(_ req: Request) -> EventLoopFuture<Response> {
     return (req.db as! SQLDatabase).raw("""
       Insert into exportready
-      Select iasinvitem.custordertype, iasinvitem.custordernum, iassalhead.name1, iasinvitem.createdat, iasinvitem.material,
+      Select row_number() over() as id, iasinvitem.custordertype, iasinvitem.custordernum, iassalhead.name1, iasinvitem.createdat, iasinvitem.material,
       iasinvitem.mtext, iasinvitem.skquantity, iasinvitem.skunit, iasinvitem.quantityx * count(iasinvitem.batchnum) as quantity2, iasinvitem.qunitx,
       iasinvitem.voptions
       from iasinvhead, iasinvitem
