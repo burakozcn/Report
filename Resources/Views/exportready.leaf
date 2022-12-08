@@ -54,7 +54,7 @@
               <td>#(exp.mtext)</td>
               <td>#(exp.skquantity)</td>
               <td>#(exp.skunit)</td>
-              <td>#(exp.quantity2)</td>
+              <td>#(exp.quantity)</td>
               <td>#(exp.qunitx)</td>
               <td>#(exp.voptions)</td>
             </tr>
