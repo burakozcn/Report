@@ -7,7 +7,7 @@ struct CreateExportReady: AsyncMigration {
       .field("custordertype", .sql(raw: "character varying(4)"))
       .field("custordernum", .sql(raw: "character varying(30)"))
       .field("name1", .sql(raw: "character varying(80)"))
-      .field("createdat", .sql(raw: "timestamp"))
+      .field("createdat", .sql(raw: "date"))
       .field("material", .sql(raw: "character varying(40)"))
       .field("mtext", .sql(raw: "character varying(80)"))
       .field("skquantity", .sql(raw: "numeric(21,8)"))
