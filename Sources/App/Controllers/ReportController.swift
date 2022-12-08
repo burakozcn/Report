@@ -160,7 +160,7 @@ struct ReportController: RouteCollection {
   """).all(decoding: ExportReady.self).flatMap { exprs in
       var exps = [ExportReady]()
       for expr in exprs {
-        exps.append(ExportReady(custordertype: expr.custordertype, custordernum: expr.custordernum, name1: expr.name1, createdat: expr.createdat, material: expr.material, mtext: expr.mtext, skquantity: expr.skquantity, skunit: expr.skunit, quantity2: expr.quantity2, qunitx: expr.qunitx, voptions: expr.voptions))
+        exps.append(ExportReady(custordertype: expr.custordertype, custordernum: expr.custordernum, name1: expr.name1, createdat: expr.createdat, material: expr.material, mtext: expr.mtext, skquantity: expr.skquantity, skunit: expr.skunit, quantity: expr.quantity, qunitx: expr.qunitx, voptions: expr.voptions))
       }
       let context = ExportReadyPageData(title: "Ready", exps: exps)
       return req.view.render("exportready", context)

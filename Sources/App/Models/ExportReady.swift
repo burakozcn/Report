@@ -31,8 +31,8 @@ final class ExportReady: Model, Content {
   @Field(key: "skunit")
   var skunit: String
   
-  @Field(key: "quantity2")
-  var quantity2: Double
+  @Field(key: "quantity")
+  var quantity: Double
   
   @Field(key: "qunitx")
   var qunitx: String
@@ -42,7 +42,7 @@ final class ExportReady: Model, Content {
   
   init() { }
   
-  init(id: Int? = nil, custordertype: String, custordernum: String, name1: String, createdat: String, material: String, mtext: String, skquantity: Double, skunit: String, quantity2: Double, qunitx: String, voptions: String) {
+  init(id: Int? = nil, custordertype: String, custordernum: String, name1: String, createdat: String, material: String, mtext: String, skquantity: Double, skunit: String, quantity: Double, qunitx: String, voptions: String) {
     self.id = id
     self.custordertype = custordertype
     self.custordernum = custordernum
@@ -52,7 +52,7 @@ final class ExportReady: Model, Content {
     self.mtext = mtext
     self.skquantity = skquantity
     self.skunit = skunit
-    self.quantity2 = quantity2
+    self.quantity = quantity
     self.qunitx = qunitx
     self.voptions = voptions
   }
