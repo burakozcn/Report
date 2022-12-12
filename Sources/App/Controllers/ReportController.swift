@@ -575,13 +575,16 @@ struct ReportController: RouteCollection {
                                     and iasbas039x.plant = iasinvitem.plant and iasbas039x.warehouse = iasinvitem.warehouse
                                     and iasbas039x.langu = 'T')
       left outer join iasbas005x on (iasbas005x.client = iasinvitem.client and iasbas005x.company = iasinvitem.company
-                                    and iasbas005x.plant = iasinvitem.plant and iasbas005x.langu = 'T')
+                                     and iasbas005x.plant = iasinvitem.plant and iasbas005x.langu = 'T')
       left join iassalhead on (iassalhead.doctype = iasinvitem.custordertype and iassalhead.docnum = iasinvitem.custordernum)
+      inner join iassalitem on (iassalitem.doctype = iasinvitem.custordertype and iassalitem.docnum = iasinvitem.custordernum
+                                and iassalitem.material = iasinvitem.material)
       where iasinvitem.company = iasinvhead.company and iasinvitem.invdoctype = iasinvitem.invdoctype
       and iasinvitem.invdocnum = iasinvhead.invdocnum and iasinvhead.docdate <= '2100-01-01' and iasinvitem.warehouse = '700'
       and iasinvitem.qpostway >= 0 and iasinvitem.qpostway <= 1 and iasinvitem.iscanceled = 0
       and iasinvhead.sourcedoctype = '80' and iasinvhead.sourcedocnum in (Select prdorder from tempfinishedorders) and iasinvhead.sourcetype >= 3
       and iasinvhead.sourcetype <= 3 and iasinvitem.custordertype = 'YDS'
+      and iassalitem.ordstat != '2'
       group by iasinvitem.custordertype, iasinvitem.custordernum, iasinvitem.material, iasinvitem.mtext, iasinvitem.voptions,
       iassalhead.name1, iasinvitem.createdat, iasinvitem.skquantity, iasinvitem.skunit, iasinvitem.quantityx, iasinvitem.quantityx, iasinvitem.qunitx
       order by iassalhead.name1, iasinvitem.custordertype, iasinvitem.custordernum;
