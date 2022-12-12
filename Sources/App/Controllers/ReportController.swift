@@ -531,6 +531,7 @@ struct ReportController: RouteCollection {
       Select * from iassalhead
       where doctype = 'YDS'
       and ordstat != 2
+      and isdelete = 0
       """).all(decoding: Row.self).map { result in
       let response = Response(status: .ok)
       do {
