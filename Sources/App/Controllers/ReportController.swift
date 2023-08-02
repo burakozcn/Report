@@ -147,7 +147,7 @@ struct ReportController: RouteCollection {
   """).all(decoding: Salt70.self).flatMap { sales in
       var sals = [Salt70]()
       for sale in sales {
-        sals.append(Salt70(malzeme: sale.malzeme, malzeme_aciklamasi: sale.malzeme_aciklamasi, musteri: sale.musteri, musteri_adi: sale.musteri_adi, tarih: sale.tarih, fatura_tipi: sale.fatura_tipi, fatura_no: sale.fatura_no, item_no: sale.item_no, miktar: sale.miktar, miktar_br: sale.miktar_br, birim_fiyat: sale.birim_fiyat, indirimsiz_net: sale.indirimsiz_net, indirimli_net: sale.indirimli_net, kdv: sale.kdv, genel_toplam: sale.genel_toplam, para_birimi: sale.para_birimi, kur_indirimsiz: sale.kur_indirimsiz.rounded(toPlaces: 2), kur_indirimli: sale.kur_indirimli.rounded(toPlaces: 2), kur_vergi: sale.kur_vergi.rounded(toPlaces: 2), kur_toplam: sale.kur_toplam.rounded(toPlaces: 2)))
+        sals.append(Salt70(malzeme: sale.malzeme, malzeme_aciklamasi: sale.malzeme_aciklamasi, musteri: sale.musteri, musteri_adi: sale.musteri_adi, ulke: sale.ulke, tarih: sale.tarih, fatura_tipi: sale.fatura_tipi, fatura_no: sale.fatura_no, item_no: sale.item_no, miktar: sale.miktar, miktar_br: sale.miktar_br, birim_fiyat: sale.birim_fiyat, indirimsiz_net: sale.indirimsiz_net, indirimli_net: sale.indirimli_net, kdv: sale.kdv, genel_toplam: sale.genel_toplam, para_birimi: sale.para_birimi, kur_indirimsiz: sale.kur_indirimsiz.rounded(toPlaces: 2), kur_indirimli: sale.kur_indirimli.rounded(toPlaces: 2), kur_vergi: sale.kur_vergi.rounded(toPlaces: 2), kur_toplam: sale.kur_toplam.rounded(toPlaces: 2)))
       }
       let context = Salt70PageData(title: "SALT70", sales: sals)
       return req.view.render("salt70", context)
