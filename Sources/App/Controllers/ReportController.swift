@@ -489,6 +489,7 @@ struct ReportController: RouteCollection {
              t1.mtext as Malzeme_Aciklamasi,
              t2.customer as Musteri,
              t2.name1 as Musteri_Adi,
+             t4.country as Ulke,
              t1.validfrom as Tarih,
              t2.doctype as Fatura_Tipi,
              t2.docnum as Fatura_No,
@@ -508,6 +509,7 @@ struct ReportController: RouteCollection {
       from iassalitem t1
       left join iassalhead t2 on t1.doctype = t2.doctype and t1.docnum = t2.docnum
       left join iasbas012 t3 on t1.validfrom = t3.curdate
+      left join iascustomer t4 on t1.customer = t4.customer
       where t2.isdelete = 0
       and (t1.itemtype = 'L' or t1.itemtype = 'C' or t1.itemtype = 'H' or t1.itemtype = 'P')
       and t2.doctype like 'F%'
