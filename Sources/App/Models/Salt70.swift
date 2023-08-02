@@ -19,6 +19,9 @@ final class Salt70: Model, Content {
   @Field(key: "musteri_adi")
   var musteri_adi: String
   
+  @Field(key: "ulke")
+  var ulke: String
+  
   @Field(key: "tarih")
   var tarih: String
   
@@ -69,12 +72,13 @@ final class Salt70: Model, Content {
   
   init() { }
   
-  init(id: Int? = nil, malzeme: String, malzeme_aciklamasi: String, musteri: String, musteri_adi: String, tarih: String, fatura_tipi: String, fatura_no: String, item_no: Int, miktar: Double, miktar_br: String, birim_fiyat: Double, indirimsiz_net: Double, indirimli_net: Double, kdv: Double, genel_toplam: Double, para_birimi: String, kur_indirimsiz: Double, kur_indirimli: Double, kur_vergi: Double, kur_toplam: Double) {
+  init(id: Int? = nil, malzeme: String, malzeme_aciklamasi: String, musteri: String, musteri_adi: String, ulke: String, tarih: String, fatura_tipi: String, fatura_no: String, item_no: Int, miktar: Double, miktar_br: String, birim_fiyat: Double, indirimsiz_net: Double, indirimli_net: Double, kdv: Double, genel_toplam: Double, para_birimi: String, kur_indirimsiz: Double, kur_indirimli: Double, kur_vergi: Double, kur_toplam: Double) {
     self.id = id
     self.malzeme = malzeme
     self.malzeme_aciklamasi = malzeme_aciklamasi
     self.musteri = musteri
     self.musteri_adi = musteri_adi
+    self.ulke = ulke
     self.tarih = tarih
     self.fatura_tipi = fatura_tipi
     self.fatura_no = fatura_no

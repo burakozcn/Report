@@ -8,6 +8,7 @@ struct CreateSalt70: AsyncMigration {
       .field("malzeme_aciklamasi", .sql(raw: "character varying(80)"))
       .field("musteri", .sql(raw: "character varying(30)"))
       .field("musteri_adi", .sql(raw: "character varying(80)"))
+      .field("ulke", .sql(raw: "character varying(3)"))
       .field("tarih", .sql(raw: "date"))
       .field("fatura_tipi", .sql(raw: "character varying(4)"))
       .field("fatura_no", .sql(raw: "character varying(30)"))
