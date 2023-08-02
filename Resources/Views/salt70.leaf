@@ -34,6 +34,7 @@
               <th scope="col">Malzeme Açıklaması</th>
               <th scope="col">Müşteri No</th>
               <th scope="col">Müşteri Adı</th>
+              <th scope="col">Müşteri Adı</th>
               <th scope="col">Tarih</th>
               <th scope="col">Fatura Tipi</th>
               <th scope="col">Fatura No</th>
@@ -59,6 +60,7 @@
               <td>#(sale.malzeme_aciklamasi)</td>
               <td>#(sale.musteri)</td>
               <td>#(sale.musteri_adi)</td>
+              <td>#(sale.ulke)</td>
               <td>#(sale.tarih)</td>
               <td>#(sale.fatura_tipi)</td>
               <td>#(sale.fatura_no)</td>
