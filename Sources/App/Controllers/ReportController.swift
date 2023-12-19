@@ -129,6 +129,7 @@ struct ReportController: RouteCollection {
   func getFin2Page(req: Request) -> EventLoopFuture<View> {
     return (req.db as! SQLDatabase).raw("""
       Select * from finitem2
+      where docdate > '2022-12-31'
       order by docdate
   """).all(decoding: FinItem2.self).flatMap { finances in
       var fins = [FinItem2]()
