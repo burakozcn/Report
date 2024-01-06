@@ -14,7 +14,7 @@ final class FinItem2: Model, Content {
   var findocnum: String
   
   @Field(key: "docdate")
-  var docdate: Date
+  var docdate: String
   
   @Field(key: "acctype")
   var acctype: String
@@ -90,7 +90,7 @@ final class FinItem2: Model, Content {
   
   init() {  }
   
-  init(id: Int? = nil, findoctype: String, findocnum: String, docdate: Date, acctype: String, glaccount: String, gltext: String, account: String, atext: String, postway: Int, hpostamnt: Double, dpostamnt: Double, dbalance: Double, hbalance: Double, debitd: Double, creditd: Double, debith: Double, credith: Double, dprice: Double, hprice: Double, punit: Double, currdate: String, currency: String, hcurrency: String, paymtype: String, paymcond: String, duedate: String, vencusdept: String) {
+  init(id: Int? = nil, findoctype: String, findocnum: String, docdate: String, acctype: String, glaccount: String, gltext: String, account: String, atext: String, postway: Int, hpostamnt: Double, dpostamnt: Double, dbalance: Double, hbalance: Double, debitd: Double, creditd: Double, debith: Double, credith: Double, dprice: Double, hprice: Double, punit: Double, currdate: String, currency: String, hcurrency: String, paymtype: String, paymcond: String, duedate: String, vencusdept: String) {
     self.id = id
     self.findoctype = findoctype
     self.findocnum = findocnum
